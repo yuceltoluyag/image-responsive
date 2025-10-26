@@ -32,4 +32,4 @@ Sistem her bir görsel için 4 farklı boyutta WebP formatında görseller oluş
 
 ## Özel Boyutlar
 
-Özel boyut ayarları için `gulpfile.js` dosyasını düzenleyebilirsiniz.
+Özel boyut ayarları için `gulpfile.mjs` dosyasını düzenleyebilirsiniz.
