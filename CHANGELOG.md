@@ -1,6 +1,6 @@
 # Değişiklik Günlüğü
 
-## [1.2.0] - 2026-11-05
+## [1.1.0] - 2026-11-05
 
 ### Değiştirildi
 - Gulp tabanlı görsel işleme altyapısı Sharp ile değiştirildi.

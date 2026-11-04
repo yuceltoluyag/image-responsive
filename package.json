@@ -1,6 +1,6 @@
 {
   "name": "image-responsive",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "description": "Resimleri farklı boyutlarda WebP formatına dönüştürme ve optimizasyon",

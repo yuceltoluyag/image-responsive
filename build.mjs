@@ -1,5 +1,5 @@
 import sharp from "sharp";
-import { readdir, mkdir, rm } from "node:fs/promises";
+import { readdir, mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const INPUT_DIR = "src";
@@ -44,6 +44,7 @@ async function findImages(directory) {
 
 async function processImage(inputPath) {
   const relativePath = path.relative(INPUT_DIR, inputPath);
+
   const outputDirectory = path.join(OUTPUT_DIR, path.dirname(relativePath));
 
   const extension = path.extname(inputPath);
@@ -78,6 +79,10 @@ async function build() {
     recursive: true,
     force: true,
   });
+
+  // dist klasörünü ve Git tarafından izlenen .gitkeep dosyasını yeniden oluştur.
+  await mkdir(OUTPUT_DIR, { recursive: true });
+  await writeFile(path.join(OUTPUT_DIR, ".gitkeep"), "");
 
   const images = await findImages(INPUT_DIR);
 
