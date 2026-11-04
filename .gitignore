@@ -89,7 +89,12 @@ out
 
 # Nuxt.js build / generate output
 .nuxt
-dist
+# Generated image files
+/src/*
+!/src/.gitkeep
+
+/dist/*
+!/dist/.gitkeep
 
 # Gatsby files
 .cache/
