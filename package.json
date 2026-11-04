@@ -1,19 +1,13 @@
 {
   "name": "image-responsive",
   "version": "1.0.0",
-  "description": "Resimleri webp formatına dönüştürme ve optimizasyon projesi",
-  "main": "gulpfile.js",
+  "private": true,
+  "type": "module",
+  "description": "Resimleri farklı boyutlarda WebP formatına dönüştürme ve optimizasyon",
   "scripts": {
-    "build": "gulp"
+    "build": "node build.mjs"
   },
   "dependencies": {
-    "del": "^8.0.1",
-    "gulp": "^5.0.1",
-    "gulp-imagemin": "^9.1.0",
-    "gulp-rename": "^2.1.0",
-    "gulp-webp": "^5.1.0"
-  },
-  "devDependencies": {
-    "gulp-rezzy": "^3.0.0"
+    "sharp": "^0.35.5"
   }
 }
