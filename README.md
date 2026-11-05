@@ -1,92 +1,104 @@
-# Responsive Resim İşleme Projesi
+# Responsive Image Processing
 
-Kaynak görselleri farklı genişliklerde WebP formatına dönüştüren, optimize eden ve web projelerinde kullanılmaya hazır hâle getiren basit bir Node.js aracıdır.
+A lightweight Node.js utility that generates optimized WebP images at multiple resolutions from source images, preparing them for responsive image delivery in modern web applications.
 
-Görsel işleme işlemleri için [Sharp](https://sharp.pixelplumbing.com/) kullanılır. Gulp veya ek görsel optimizasyon eklentilerine ihtiyaç duymaz.
+Image processing is powered by [Sharp](<https://sharp.pixelplumbing.com/>), a high-performance image processing library. No Gulp or additional image optimization plugins are required.
 
-## Gereksinimler
+## Requirements
 
-- Node.js 20.9 veya üzeri
+- Node.js 20.9 or later
 - npm
 
-## Kurulum
+## Installation
 
-Projeyi klonladıktan sonra gerekli bağımlılıkları yükleyin:
+Clone the repository and install the project dependencies:
+
+bash
 
 ```bash
 npm install
 ```
 
-## Kullanım
+## Usage
 
-1. İşlemek istediğiniz görselleri `src` klasörüne yerleştirin.
-2. Proje dizininde aşağıdaki komutu çalıştırın:
+1. Place the source images in the `src` directory.
+2. Run the build command from the project root:
+
+bash
 
 ```bash
 npm run build
 ```
 
-3. İşlenen görseller `dist` klasörüne kaydedilir.
+3. The generated WebP images will be written to the `dist` directory.
 
-Her derleme işleminde önceki `dist` içeriği temizlenir ve çıktılar yeniden oluşturulur.
+Each build starts by cleaning the existing contents of the `dist` directory before generating new output files.
 
-## Desteklenen Görsel Formatları
+## Supported Image Formats
 
-Kaynak olarak aşağıdaki formatlar desteklenir:
+The following source image formats are supported:
 
 - JPEG (`.jpg`, `.jpeg`)
 - PNG (`.png`)
 - GIF (`.gif`)
 
-## Oluşturulan WebP Boyutları
+## Generated WebP Resolutions
 
-Her kaynak görsel için dört farklı genişlikte WebP çıktısı oluşturulur:
+Each source image is converted into four WebP variants with predefined widths:
 
-| Sonek | Genişlik | Kullanım |
-|---|---:|---|
-| `-sm` | 320px | Mobil cihazlar |
-| `-md` | 640px | Tablet ve küçük ekranlar |
-| `-lg` | 1024px | Dizüstü bilgisayarlar |
-| `-xl` | 1920px | Büyük ekranlar |
+| Suffix | Width | Intended Use |
+| --- | --- | --- |
+| `-sm` | 320px | Mobile devices |
+| `-md` | 640px | Tablets and smaller viewports |
+| `-lg` | 1024px | Laptops and standard desktop displays |
+| `-xl` | 1920px | Large and high-resolution displays |
 
-Örneğin `ornek.jpg` dosyası için şu çıktılar oluşturulur:
+For example, processing `example.jpg` produces the following output files:
+
+text
 
 ```text
 dist/
-└── ornek-sm.webp
-└── ornek-md.webp
-└── ornek-lg.webp
-└── ornek-xl.webp
+├── example-sm.webp
+├── example-md.webp
+├── example-lg.webp
+└── example-xl.webp
 ```
 
-Kaynak görselin genişliği hedef boyuttan küçük olsa bile ilgili çıktı oluşturulur. Bu durumda görsel hedef genişliğe büyütülür.
+If a source image is smaller than the target width, it is automatically upscaled to match the requested dimensions. An output variant is generated for each configured resolution regardless of the original image dimensions.
 
-## Yapılandırma
+## Configuration
 
-Boyutları değiştirmek veya WebP optimizasyon ayarlarını düzenlemek için `build.mjs` dosyasındaki aşağıdaki bölümleri düzenleyebilirsiniz:
+Image dimensions, output naming conventions, and WebP encoding parameters can be customized in `build.mjs`:
 
-- `SIZES`: Oluşturulacak görsel genişlikleri ve dosya sonekleri.
-- `WEBP_OPTIONS`: WebP kalite ve optimizasyon ayarları.
-- `SUPPORTED_FORMATS`: İşlenecek kaynak görsel uzantıları.
+- `SIZES`: Defines the target image widths and corresponding filename suffixes.
+- `WEBP_OPTIONS`: Specifies WebP encoding parameters, including quality and optimization settings.
+- `SUPPORTED_FORMATS`: Defines the supported source image file extensions.
 
-## Proje Yapısı
+## Project Structure
+
+text
 
 ```text
 image-responsive/
-├── src/                 # Kaynak görseller
-├── dist/                # Oluşturulan WebP dosyaları
-├── build.mjs            # Görsel işleme betiği
-├── package.json
-├── package-lock.json
+├── src/                 # Source images
+├── dist/                # Generated WebP variants
+├── build.mjs            # Image processing and build script
+├── package.json         # Project metadata and dependencies
+├── package-lock.json    # Dependency lockfile
 ├── .gitignore
 ├── README.md
 └── CHANGELOG.md
 ```
 
-`src` ve `dist` klasörlerinin içeriği Git tarafından takip edilmez. Klasörlerin depoda görünmesini sağlamak için `.gitkeep` dosyaları kullanılır.
+The contents of the `src` and `dist` directories are excluded from version control. `.gitkeep` files are included to preserve these directories in the repository.
 
-## Kullanılan Teknoloji
+## Technologies
 
-- [Node.js](https://nodejs.org/)
-- [Sharp](https://sharp.pixelplumbing.com/)
-- WebP
+- [Node.js](<https://nodejs.org/>) – JavaScript runtime
+- [Sharp](<https://sharp.pixelplumbing.com/>) – High-performance image processing
+- [WebP](<https://developers.google.com/speed/webp>) – Modern image format for efficient web delivery
+
+## Changelog
+
+For a detailed history of changes, updates, and improvements, see the CHANGELOG.md file.
