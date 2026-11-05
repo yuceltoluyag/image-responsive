@@ -1,40 +1,49 @@
-# Değişiklik Günlüğü
+# Changelog
 
-## [1.1.0] - 2026-11-05
+All notable changes to this project are documented in this file.
 
-### Değiştirildi
-- Gulp tabanlı görsel işleme altyapısı Sharp ile değiştirildi.
-- Görsel işleme görevleri `gulpfile.mjs` yerine `build.mjs` üzerinden yürütülmeye başlandı.
-- Görsel optimizasyonu ve WebP dönüşümü tek bir Sharp işlem hattında birleştirildi.
-- Kaynak görseller artık alt klasör yapıları korunarak işleniyor.
-- Her kaynak görsel için dört farklı genişlikte çıktı oluşturulacak şekilde boyutlandırma mantığı güncellendi.
-- WebP kalite ve optimizasyon ayarları merkezi olarak yapılandırıldı.
-- `README.md`, yeni proje yapısına ve kullanım şekline göre güncellendi.
+This project follows the [Keep a Changelog](<https://keepachangelog.com/en/1.1.0/>) format.
 
-### Kaldırıldı
-- Gulp ve ilgili eklentiler kaldırıldı:
+## \[1.1.0\] - 2026-11-05
+
+### Changed
+
+- Replaced the Gulp-based image processing pipeline with Sharp.
+- Migrated image processing tasks from `gulpfile.mjs` to `build.mjs`.
+- Consolidated image optimization and WebP conversion into a single Sharp processing pipeline.
+- Updated the image processing logic to preserve source directory structures in the output.
+- Introduced a multi-resolution output strategy that generates four image variants at different widths for each source image.
+- Centralized WebP encoding and optimization settings.
+- Updated `README.md` to reflect the new project structure, configuration, and usage instructions.
+
+### Removed
+
+- Removed Gulp and its associated plugins:
   - `gulp`
   - `gulp-imagemin`
   - `gulp-webp`
   - `gulp-rezzy`
   - `gulp-rename`
   - `del`
-- Eski `gulpfile.mjs` yapılandırması kaldırıldı.
-- Görsel optimizasyonu için kullanılan birden fazla eklentinin oluşturduğu bağımlılık zinciri ortadan kaldırıldı.
+- Removed the legacy `gulpfile.mjs` configuration.
+- Eliminated the dependency chain introduced by multiple image optimization plugins.
 
-### Güvenlik
-- Eski bağımlılık zincirinden kaynaklanan npm audit sorunlarını gidermek amacıyla Sharp tabanlı daha sade bir yapıya geçildi.
-- Bağımlılık sayısı azaltıldı.
+### Security
 
-## [1.1.0] - 2025-10-26
+- Migrated to a streamlined Sharp-based architecture to address npm audit issues associated with the previous dependency tree.
+- Reduced the number of project dependencies.
 
-### Eklendi
-- Projeye `gulp-rezzy`, `gulp-imagemin` ve `gulp-webp` eklentileri dahil edildi.
-- `CHANGELOG.md` dosyası oluşturuldu.
+## \[1.0.0\] - 2025-10-26
 
-### Değiştirildi
-- `gulp-responsive` eklentisi kaldırılarak yerine `gulp-rezzy` kullanıldı.
-- Gulp yapılandırma dosyası (`gulpfile.js`) CommonJS'den ESM'ye (`gulpfile.mjs`) geçirildi.
-- `del` paketi `deleteSync` kullanacak şekilde güncellendi.
-- Gulp görevleri artık sadece `.webp` formatında çıktı verecek şekilde güncellendi.
-- `README.md` dosyası güncellendi.
+### Added
+
+- Integrated `gulp-rezzy`, `gulp-imagemin`, and `gulp-webp` plugins.
+- Added `CHANGELOG.md` to document project changes.
+
+### Changed
+
+- Replaced `gulp-responsive` with `gulp-rezzy` for responsive image processing.
+- Migrated the Gulp configuration from CommonJS (`gulpfile.js`) to ECMAScript Modules (`gulpfile.mjs`).
+- Updated the `del` package integration to use `deleteSync`.
+- Updated Gulp tasks to generate WebP-only output.
+- Updated `README.md`.
